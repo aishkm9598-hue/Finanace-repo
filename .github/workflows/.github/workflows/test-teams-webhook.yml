@@ -1,0 +1,16 @@
+name: Test Teams Webhook
+
+on:
+  workflow_dispatch:  # Allows you to trigger the workflow manually
+
+jobs:
+  send-to-teams:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message to Microsoft Teams
+        run: |
+          curl -H 'Content-Type: application/json' \
+               -d '{
+                    "text": "✅ GitHub -> Teams webhook test successful!"
+                   }' \
+               ${{ secrets.TEAMS_WEBHOOK_URL }}
